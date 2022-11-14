@@ -15,7 +15,7 @@ train_data = pd.read_csv("train.csv")
 # scsplit method is used in order to split our regression data in a stratisfied way and keep a similar distribution of retweet counts between the two sets
 X_train, X_test, y_train, y_test = scsplit(train_data, train_data['retweets_count'], stratify=train_data['retweets_count'], train_size=0.7, test_size=0.3)
 
-# We remove the actual number of retweets from oux  r features since it is the value that we are trying to predict
+# We remove the actual number of retweets from our features since it is the value that we are trying to predict
 X_train = X_train.drop(['retweets_count'], axis=1)
 X_test = X_test.drop(['retweets_count'], axis=1)
 
@@ -83,6 +83,5 @@ with open("zero_predictions.txt", 'w') as f:
     writer.writerow(["TweetID", "retweets_count"])
     for index, prediction in enumerate(dummy_pred):
         writer.writerow([str(eval_data['TweetID'].iloc[index]) , str(int(prediction))])
-
 
 
